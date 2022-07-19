@@ -4,15 +4,24 @@
 ### [◂](command:katapod.loadPage?step7){.steps} Step 8 of 10 [▸](command:katapod.loadPage?step9){.steps}
 </div>
 
-Find all information about items with name `Chocolate Cake`:
+Next, update the row using the CQL `UPDATE` statement:
+```
+UPDATE users SET name = 'Joseph' 
+WHERE email = 'joe@datastax.com';
+
+SELECT * FROM users;
+```
+
+Update another row in the table:
 
 <details>
-  <summary>Solution</summary>
+  <summary>Solution</summary> 
 
 ```
-SELECT * 
-FROM items_by_name
-WHERE name = 'Chocolate Cake';
+UPDATE users SET name = 'Jennifer' 
+WHERE email = 'jen@datastax.com';
+
+SELECT * FROM users;
 ```
 
 </details>

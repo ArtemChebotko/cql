@@ -4,15 +4,20 @@
 ### [◂](command:katapod.loadPage?step6){.steps} Step 7 of 10 [▸](command:katapod.loadPage?step8){.steps}
 </div>
 
-Find all information about an item with id `Box2`:
+Now, retrieve the row using the CQL `SELECT` statement:
+```
+SELECT * FROM users
+WHERE email = 'joe@datastax.com';
+```
+
+Retrieve a different row from the table:
 
 <details>
-  <summary>Solution</summary>
+  <summary>Solution</summary> 
 
 ```
-SELECT * 
-FROM items_by_id
-WHERE id = 'Box2';
+SELECT * FROM users
+WHERE email = 'jen@datastax.com';
 ```
 
 </details>

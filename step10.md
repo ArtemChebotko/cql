@@ -4,41 +4,19 @@
 ### [◂](command:katapod.loadPage?step9){.steps} Step 10 of 10 [▸](command:katapod.loadPage?finish){.steps}
 </div>
 
-Add item `Box2` into active cart `19925cc1-4f8b-4a44-b893-2a49a8434fc8` and update the cart subtotal to `111.50`:
+If you are familiar with SQL, CQL may look quite similar. 
+Indeed, there are many syntactic similarities between the two languages, but there are also many 
+important differences. Here are just a few facts about CQL that highlight some of the differences:
 
-<details>
-  <summary>Solution</summary>
+- CQL supports tables with single-row and multi-row partitions
+- CQL table primary key consists of a mandatory partition key and an optional clustering key
+- CQL does not support referential integrity constraints
+- CQL updates or inserts may result in upserts
+- CQL queries cannot retrieve data based on an arbitrary table column
+- CQL supports no joins or other binary operations
+- CQL CRUD operations are executed with a tunable consistency level
+- CQL supports lightweight transactions but not ACID transactions
 
-```
-BEGIN BATCH
-  INSERT INTO items_by_cart (
-    cart_id,
-    timestamp,
-    item_id,
-    item_name,
-    item_description,
-    item_price,
-    quantity)
-  VALUES (
-    19925cc1-4f8b-4a44-b893-2a49a8434fc8,
-    TOTIMESTAMP(NOW()),
-    'Box2',
-    'Chocolates',
-    '25 gourmet chocolates from our collection',
-    60.00,
-    1);
-  UPDATE items_by_cart 
-  SET cart_subtotal = 111.50
-  WHERE cart_id = 19925cc1-4f8b-4a44-b893-2a49a8434fc8
-  IF cart_subtotal = 51.50;
-APPLY BATCH;
-
-SELECT timestamp, item_id, item_price, 
-       quantity, cart_subtotal 
-FROM items_by_cart
-WHERE cart_id = 19925cc1-4f8b-4a44-b893-2a49a8434fc8; 
-```
-
-</details>
+If some of the above facts do not sound familiar, you know that there are more about CQL to learn! 
 
 [continue](command:katapod.loadPage?finish){.orange_bar}
